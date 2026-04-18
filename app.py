@@ -2,13 +2,16 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+def add_numbers(a, b):
+    return a + b
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     result = None
     if request.method == "POST":
         a = int(request.form["a"])
         b = int(request.form["b"])
-        result = a + b
+        result = add_numbers(a, b)
 
     return f"""
     <h1>Simple Addition Web App</h1>
